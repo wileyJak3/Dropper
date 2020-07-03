@@ -20,4 +20,12 @@ class Img {
             y: y
         }
     }
+    //* Function to calculate the distance between 2 points
+    dist = (cordinate1, cordinate2) => {
+        let xVel = cordinate1.x - cordinate2.x
+        let yVel = cordinate1.y - cordinate2.y
+
+        //* pythagorean theorem
+        return Math.sqrt(Math.pow(xVel, 2) + Math.pow(yVel, 2));
+    }
 }
