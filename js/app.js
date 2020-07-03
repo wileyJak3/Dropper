@@ -55,4 +55,11 @@ class astroid extends Img {
         this.yVel = (Math.random()) * 2
         this.sizeWidth = Math.random() * 90 + 10
     }
+
+    draw = () => {
+        let img = document.getElementById("astroid");
+        context.drawImage(img, this.x, this.y, this.sizeWidth, this.sizeWidth);
+        this.x += this.xVel // X velocity ( rate at which something moves in each direction)
+        this.y += this.yVel
+    }
 }
