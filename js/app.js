@@ -7,3 +7,17 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let context = canvas.getContext('2d');
+
+//* class to be extended by all images class that need the collision method
+
+class Img {
+
+    //* class creates a coordinate object to be use by the collision function
+
+    makeCord = (x, y) => {
+        return {
+            x: x,
+            y: y
+        }
+    }
+}
