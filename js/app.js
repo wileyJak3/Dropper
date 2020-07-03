@@ -28,4 +28,17 @@ class Img {
         //* pythagorean theorem
         return Math.sqrt(Math.pow(xVel, 2) + Math.pow(yVel, 2));
     }
+
+    
+    //* the collison function finds the centermost point of each object and returns true when the distance between the 2 centermost points of each image is less than the sum of the radius  of the two images
+
+    collision = (obj) => {
+        this.coordinate = this.makeCord(this.x + this.sizeWidth / 2, this.y + this.sizeWidth / 2);
+        // let objCoordinate = (this.x + this.sizeWidth/2,this.y + this.sizeWidth/2)
+        this.objCoordinate = this.makeCord(obj.x + obj.size / 2, obj.y + obj.size / 2)
+        let thisRad = this.sizeWidth / 2
+        let objRad = obj.size / 2
+        let d = this.dist(this.coordinate, this.objCoordinate)
+        return (d + 30 < (thisRad + objRad))
+    }
 }
