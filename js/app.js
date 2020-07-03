@@ -62,4 +62,17 @@ class astroid extends Img {
         this.x += this.xVel // X velocity ( rate at which something moves in each direction)
         this.y += this.yVel
     }
+
+    checkOffPage = () => {
+        if (this.y < 0 || this.y > canvas.height) {
+            this.y = 0
+            this.x = Math.random() * canvas.width
+        }
+        if (this.x < -80 || this.x > canvas.width + 20) {
+            this.y = 0
+            this.x = Math.random() * canvas.width
+        }
+
+        console.log("working")
+    }
 }
