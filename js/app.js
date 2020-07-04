@@ -61,6 +61,10 @@ class Img {
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 
+//
+//~ ─── SECTION ASTROID CLASS  ──────────────────────────────────────────────────────
+//
+
 //* astroid image class that creates the moving astroid images
 
 class astroid extends Img {
@@ -93,16 +97,11 @@ class astroid extends Img {
 
         console.log("working")
     }
+
 }
 
-//* Intializes empty array of astroids
-let asteroidArray = [];
-
-//* loop to creates astroids and pushes them into array
-for (let i = 0; i < 50; i++) {
-    asteroidArray.push(new astroid())
-}
-
+//
+//~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 
 //* Space ship image class that creates the moving spaceship image
 
