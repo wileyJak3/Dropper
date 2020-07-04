@@ -76,3 +76,8 @@ class astroid extends Img {
         console.log("working")
     }
 }
+
+//* Intializes empty array of astroids
+let asteroidArray = [];
+
+
