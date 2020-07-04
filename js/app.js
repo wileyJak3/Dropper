@@ -154,7 +154,15 @@ let animate = () => {
         asteroidArray[i].checkOffPage()
     }
 
+    //* draws the player ship onto the canvas
+    playerShip.draw()
 
-
+    //* checks for a collision between player ship and the asteroids
+    for (let i = 0; i < asteroidArray.length; i++) {
+        if (asteroidArray[i].collision(playerShip)) {
+            console.log("collision")
+            alert("collision")
+        }
+    }
 
 }
