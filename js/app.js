@@ -113,3 +113,24 @@ class Spaceship extends Img {
 
 //* creates a space ship for the player to control
 playerShip = new Spaceship()
+
+//* checks the arrow key presses to control the spaceship
+document.onkeydown = function (event) {
+    switch (event.key) {
+        case 'ArrowUp':
+            // up arrow
+            playerShip.yVel = playerShip.yVel - 1.5
+            break;
+        case 'ArrowDown':
+            // down arrow
+            playerShip.yVel = playerShip.yVel + 1.5
+            break;
+        case 'ArrowLeft':
+            // left arrow
+            playerShip.xVel = playerShip.xVel - 2.5
+            break;
+        case 'ArrowRight':
+            // right arrow
+            playerShip.xVel = playerShip.xVel + 2.5
+    }
+};
