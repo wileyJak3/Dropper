@@ -85,5 +85,17 @@ for (let i = 0; i < 50; i++) {
     asteroidArray.push(new astroid())
 }
 
-//
 
+//* Space ship image class that creates the moving spaceship image
+
+class Spaceship extends Img {
+
+    constructor() {
+        super()
+        this.x = canvas.width / 2
+        this.y = canvas.height - 90
+        this.xVel = 0
+        this.yVel = 0
+        this.size = 100
+    }
+}
