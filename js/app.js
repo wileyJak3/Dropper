@@ -80,4 +80,10 @@ class astroid extends Img {
 //* Intializes empty array of astroids
 let asteroidArray = [];
 
+//* loop to creates astroids and pushes them into array
+for (let i = 0; i < 50; i++) {
+    asteroidArray.push(new astroid())
+}
+
+//
 
