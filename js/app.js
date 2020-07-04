@@ -134,3 +134,13 @@ document.onkeydown = function (event) {
             playerShip.xVel = playerShip.xVel + 2.5
     }
 };
+
+
+let animate = () => {
+
+    //* the request animation frame function is basically creating a loop, It's basically cycling through over and over again until told to stop
+    requestAnimationFrame(animate)
+
+    //* clear the screen so multiple circles don't just stack on each other and actually disappear when another appears to simulate animation.
+    context.clearRect(0, 0, innerWidth, innerHeight)
+}
