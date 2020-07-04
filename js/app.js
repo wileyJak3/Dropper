@@ -166,3 +166,4 @@ let animate = () => {
     }
 
 }
+animate()
