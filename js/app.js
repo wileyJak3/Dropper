@@ -143,4 +143,18 @@ let animate = () => {
 
     //* clear the screen so multiple circles don't just stack on each other and actually disappear when another appears to simulate animation.
     context.clearRect(0, 0, innerWidth, innerHeight)
+
+    //* draws the asteroids stored in the asteroid array onto the canvas
+    for (let i = 0; i < asteroidArray.length; i++) {
+        asteroidArray[i].draw()
+    }
+
+    for (let i = 0; i < asteroidArray.length; i++) {
+        // circleArray[i].checkOffPage()
+        asteroidArray[i].checkOffPage()
+    }
+
+
+
+
 }
