@@ -103,17 +103,25 @@ class astroid extends Img {
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 
+//~ ─── SECTION SPACESHIP CLASS  ────────────────────────────────────────────────────
+//
+
 //* Space ship image class that creates the moving spaceship image
 
 class Spaceship extends Img {
 
     constructor() {
         super()
+        this.blueCrystal = 0
+        this.redCrystal = 0
+        this.radioactive = 0
         this.x = canvas.width / 2
         this.y = canvas.height - 90
         this.xVel = 0
         this.yVel = 0
         this.size = 100
+        this.hull = 100
+        this.shipScore = 0
     }
 
     //* references the html image and draws it onto the canvas
@@ -126,7 +134,33 @@ class Spaceship extends Img {
         this.y = this.y + this.yVel
 
     }
-}
+
+    dmgHull = () => {
+        let randDmgVal = (Math.random() * 10) + 10
+        let tempDmgVal = this.hull - randDmgVal
+        alert(`${this.hull} - ${randDmgVal} = ${tempDmgVal}`)
+        this.hull = tempDmgVal
+
+    }
+
+
+    //* this method checks to see if the spaceship has flow off the page
+    checkOffPage = () => {
+        if (this.y < 0 || this.y > canvas.height) {
+            this.y = 0
+            this.x = Math.random() * canvas.width
+        }
+        if (this.x < -80 || this.x > canvas.width + 20) {
+            this.y = 0
+            this.x = Math.random() * canvas.width
+        }
+
+        // console.log("working")
+    }
+
+    //
+//~ ─── !SECTION ───────────────────────────────────────────────────────────────────
+//
 
 //* creates a space ship for the player to control
 playerShip = new Spaceship()
