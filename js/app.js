@@ -98,4 +98,15 @@ class Spaceship extends Img {
         this.yVel = 0
         this.size = 100
     }
+
+    //* references the html image and draws it onto the canvas
+    draw = () => {
+        let img = document.getElementById("spaceship");
+        context.drawImage(img, this.x, this.y, this.size, this.size);
+
+
+        this.x = this.x + this.xVel // X velocity ( rate at which something moves in each direction)
+        this.y = this.y + this.yVel
+
+    }
 }
