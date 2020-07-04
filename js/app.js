@@ -110,3 +110,6 @@ class Spaceship extends Img {
 
     }
 }
+
+//* creates a space ship for the player to control
+playerShip = new Spaceship()
