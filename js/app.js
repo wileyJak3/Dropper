@@ -1,18 +1,21 @@
 //* going to search entire html document and look for and html element called canvas
 let canvas = document.querySelector('canvas')
 
-
 //* sets the length and width of the entire canvas to the window length and width
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let context = canvas.getContext('2d');
 
+
+
+
 //* class to be extended by all images class that need the collision method
 
-//
 //~ ───  SECTION IMG CLASS  ──────────────────────────────────────────────────────────────────
 //
+
+
 
 class Img {
 
@@ -60,8 +63,10 @@ class Img {
 
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
-
 //
+
+
+
 //~ ─── SECTION ASTROID CLASS  ──────────────────────────────────────────────────────
 //
 
@@ -102,7 +107,8 @@ class astroid extends Img {
 
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
-
+//
+//
 //~ ─── SECTION SPACESHIP CLASS  ────────────────────────────────────────────────────
 //
 
@@ -157,14 +163,18 @@ class Spaceship extends Img {
 
         // console.log("working")
     }
-}
 
+}
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
 
+
 // //* creates a space ship for the player to control
 // playerShip = new Spaceship()
+
+
+
 
 //
 //~ ─── SECTION POWERUPS CLASS  ─────────────────────────────────────────────────────
@@ -183,6 +193,9 @@ class PowerUps extends Spaceship {
         this.sizeWidth = Math.random() * 90 + 10
         this.powerUpArr = [document.getElementById("radioactive"), document.getElementById("redCrystal"), document.getElementById("blueCrystal")]
     }
+
+
+
     draw = () => {
 
         let img = this.powerUpArr[this.powerUpNum]
@@ -190,6 +203,7 @@ class PowerUps extends Spaceship {
         this.x += this.xVel // X velocity ( rate at which something moves in each direction)
         this.y += this.yVel
     }
+
     checkOffPage = () => {
         if (this.y < 0 || this.y > canvas.height) {
             this.y = 0
@@ -204,13 +218,14 @@ class PowerUps extends Spaceship {
 
         console.log("working")
     }
+
     checkPowerUp = () => {
         (this.powerUpNum == 0) ? this.radioactive++
             : (this.powerUpNum == 1) ? this.redCrystal++
-            :
-            this.blueCrystal++
+            :this.blueCrystal++
     }
 }
+
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
@@ -219,6 +234,10 @@ class PowerUps extends Spaceship {
 //
 //~ ───  SECTION KEY ASSIGNMENTS ────────────────────────────────────────────────────────────
 //
+
+
+// //* Create powerUp obj
+// powerUpSpawn = new PowerUps()
 
 //* checks the arrow key presses to control the spaceship
 
@@ -275,7 +294,12 @@ document.onkeydown = function (event) {
 
     }
 };
+//
+//~ ─── !SECTION ───────────────────────────────────────────────────────────────────
+//
 
+
+//
 //~ ─── SECTION FUNCTION CALLS AND GLOBALS  ─────────────────────────────────────────
 //
 //
@@ -305,18 +329,24 @@ let powerUpTimer = 100
 let valueChange = false;
 let shieldOn = false;
 
-//
-//~ ─── !SECTION ───────────────────────────────────────────────────────────────────
-//
 
 let animate = () => {
 
     //* the request animation frame function is basically creating a loop, It's basically cycling through over and over again until told to stop
-    requestAnimationFrame(animate)
+
+    if (gamePause == false) {
+        // myReq = 
+        requestAnimationFrame(animate)
+        //cancelAnimationFrame(myReq)
+    }
+
 
     //* clear the screen so multiple circles don't just stack on each other and actually disappear when another appears to simulate animation.
     context.clearRect(0, 0, innerWidth, innerHeight)
 
+    //
+
+    //
     //? ─── PLAYER SCORE ───────────────────────────────────────────────────────────────
     //
 
@@ -404,6 +434,8 @@ let animate = () => {
     //? ─── !SECTION ────────────────────────────────────────────────────────────────────
     //
 
+
+
     for (let i = 0; i < asteroidArray.length; i++) {
         asteroidArray[i].draw()
     }
@@ -428,8 +460,8 @@ let animate = () => {
             }
         }
     }
-     //* Collision Detection for outside of warp/hyperspace and have shields
-     else if (shieldOn) {
+    //* Collision Detection for outside of warp/hyperspace and have shields
+    else if (shieldOn) {
         for (let i = 0; i < asteroidArray.length; i++) {
             if (asteroidArray[i].collision(playerShip)) {
                 console.log("collision")
@@ -450,8 +482,8 @@ let animate = () => {
             }
         }
     }
-      //* Collision Detection for inside of warp/hyperspace and have shields 
-      else if (valueChange && !shieldOn) {
+     //* Collision Detection for inside of warp/hyperspace and have shields 
+    else if (valueChange && !shieldOn) {
         for (let i = 0; i < asteroidArray.length; i++) {
             if (asteroidArray[i].collision(playerShip)) {
                 console.log("collision")
@@ -461,6 +493,8 @@ let animate = () => {
             }
         }
     }
+
+
     //* Power Ups collision detection
     if (powerUpSpawn.collision(playerShip)) {
         //! cancelAnimationFrame(myReq); this is how I end game
@@ -473,6 +507,11 @@ let animate = () => {
 
         powerUpSpawn = new PowerUps()
     }
-
 }
+
+
 animate()
+
+//
+//~ ─── !SECTION ───────────────────────────────────────────────────────────────────
+//
