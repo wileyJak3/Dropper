@@ -183,6 +183,14 @@ class PowerUps extends Spaceship {
         this.sizeWidth = Math.random() * 90 + 10
         this.powerUpArr = [document.getElementById("radioactive"), document.getElementById("redCrystal"), document.getElementById("blueCrystal")]
     }
+    draw = () => {
+
+        let img = this.powerUpArr[this.powerUpNum]
+        context.drawImage(img, this.x, this.y, this.sizeWidth, this.sizeWidth);
+        this.x += this.xVel // X velocity ( rate at which something moves in each direction)
+        this.y += this.yVel
+    }
+
 }
 
 
