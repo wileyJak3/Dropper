@@ -157,6 +157,7 @@ class Spaceship extends Img {
 
         // console.log("working")
     }
+}
 
     //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
@@ -164,6 +165,27 @@ class Spaceship extends Img {
 
 //* creates a space ship for the player to control
 playerShip = new Spaceship()
+
+//
+//~ ─── SECTION POWERUPS CLASS  ─────────────────────────────────────────────────────
+//
+
+
+class PowerUps extends Spaceship {
+
+    constructor() {
+        super()
+        this.x = Math.random() * canvas.width
+        this.y = 0
+        this.xVel = (Math.random() - 0.6) * 2
+        this.yVel = (Math.random()) * 2
+        this.powerUpNum = Math.floor(Math.random() * 3)
+        this.sizeWidth = Math.random() * 90 + 10
+        this.powerUpArr = [document.getElementById("radioactive"), document.getElementById("redCrystal"), document.getElementById("blueCrystal")]
+    }
+}
+
+
 
 //* checks the arrow key presses to control the spaceship
 document.onkeydown = function (event) {
