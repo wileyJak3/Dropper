@@ -210,9 +210,17 @@ class PowerUps extends Spaceship {
             :this.blueCrystal++
     }
 }
+//
+//~ ─── !SECTION ───────────────────────────────────────────────────────────────────
+//
 
+
+//
+//~ ───  SECTION KEY ASSIGNMENTS ────────────────────────────────────────────────────────────
+//
 
 //* checks the arrow key presses to control the spaceship
+
 document.onkeydown = function (event) {
     switch (event.key) {
         case 'ArrowUp':
@@ -223,16 +231,53 @@ document.onkeydown = function (event) {
             // down arrow
             playerShip.yVel = playerShip.yVel + 1.5
             break;
+        case 'ArrowRight':
+            // right arrow
+            playerShip.xVel = playerShip.xVel + 2.5
+            break
+
         case 'ArrowLeft':
             // left arrow
             playerShip.xVel = playerShip.xVel - 2.5
             break;
-        case 'ArrowRight':
-            // right arrow
-            playerShip.xVel = playerShip.xVel + 2.5
+
+        case 'w':
+            alert("you pressed the w key (warp speed)")
+            warpCounter = 0
+            playerWarp = true
+            break
+        case 'a':
+            alert("you pressed the a key (time/space generator)")
+            timeCounter = 0
+            timeFreeze = true
+            break
+        case 's':
+            alert("you pressed the s key (shields)")
+            shieldCounter = 0
+            shieldOn = true
+            break
+        case ' ':
+            if (gameTog == true) {
+                gameTog = false
+                gamePause = true
+                alert("GAME PAUSED")
+                break
+            } else {
+                gameTog = true
+                gamePause = false
+                animate()
+                alert("resumed")
+                break
+            }
+
+
+
     }
 };
 
+//
+//~ ─── !SECTION ───────────────────────────────────────────────────────────────────
+//
 
 let animate = () => {
 
