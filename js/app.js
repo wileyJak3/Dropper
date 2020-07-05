@@ -163,8 +163,8 @@ class Spaceship extends Img {
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
 
-//* creates a space ship for the player to control
-playerShip = new Spaceship()
+// //* creates a space ship for the player to control
+// playerShip = new Spaceship()
 
 //
 //~ ─── SECTION POWERUPS CLASS  ─────────────────────────────────────────────────────
@@ -207,7 +207,8 @@ class PowerUps extends Spaceship {
     checkPowerUp = () => {
         (this.powerUpNum == 0) ? this.radioactive++
             : (this.powerUpNum == 1) ? this.redCrystal++
-            :this.blueCrystal++
+            :
+            this.blueCrystal++
     }
 }
 //
@@ -274,6 +275,35 @@ document.onkeydown = function (event) {
 
     }
 };
+
+//~ ─── SECTION FUNCTION CALLS AND GLOBALS  ─────────────────────────────────────────
+//
+//
+//~ ─── ASTEROID ARRAY CREATION ────────────────────────────────────────────────────
+//
+
+//* Initializes empty array of asteroids
+let asteroidArray = [];
+
+//* loop to creates astroids and pushes them into array
+for (let i = 0; i < 10; i++) {
+    asteroidArray.push(new astroid())
+}
+let playerWarp;
+let timeFreeze;
+let gameTog = true
+let gamePause = false
+//* creates a space ship for the player to control
+playerShip = new Spaceship()
+//* Create powerUp obj
+powerUpSpawn = new PowerUps()
+let iterationCounter = 0
+let warpCounter = 0
+let timeCounter = 0
+let shieldCounter = 0
+let powerUpTimer = 100
+let valueChange = false;
+let shieldOn = false;
 
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
