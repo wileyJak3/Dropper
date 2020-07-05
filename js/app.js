@@ -357,6 +357,38 @@ let animate = () => {
     // ─── !SECTION ────────────────────────────────────────────────────────────────────
     //
 
+    //? ───  SECTION TIME FREEZE  ─────────────────────────────────────────────────────────
+    //
+
+
+
+    if (timeFreeze == true) {
+        for (let i = 0; i < asteroidArray.length; i++) {
+            asteroidArray[i].speedMagReduce(100)
+            // warpCounter = 0
+            valueChange = true
+
+        }
+        timeFreeze = false
+    }
+
+
+    if (timeCounter == powerUpTimer && valueChange == true) {
+        alert("space/time generator failing")
+        for (let i = 0; i < asteroidArray.length; i++) {
+            asteroidArray[i].speedMagIncrease(100)
+            valueChange = false
+
+        }
+    }
+
+    console.log(timeCounter)
+    timeCounter++
+
+    //
+    //? ─── !SECTION ────────────────────────────────────────────────────────────────────
+    //
+
     //* draws the asteroids stored in the asteroid array onto the canvas
     for (let i = 0; i < asteroidArray.length; i++) {
         asteroidArray[i].draw()
