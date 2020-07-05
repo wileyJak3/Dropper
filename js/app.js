@@ -326,7 +326,21 @@ let animate = () => {
         // alert(playerShip.shipScore)
         break
     }
-    
+
+    //? ─── SECTION WARP SPEED  ─────────────────────────────────────────────────────────
+    //
+
+    if (playerWarp == true) {
+        for (let i = 0; i < asteroidArray.length; i++) {
+            asteroidArray[i].speedMagReduce(2)
+            // warpCounter = 0
+            valueChange = true
+
+        }
+        playerWarp = false
+    }
+
+
     //* draws the asteroids stored in the asteroid array onto the canvas
     for (let i = 0; i < asteroidArray.length; i++) {
         asteroidArray[i].draw()
