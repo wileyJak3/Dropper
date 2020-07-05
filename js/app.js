@@ -439,6 +439,17 @@ let animate = () => {
             }
         }
     }
+    //* Collision Detection for inside of warp/hyperspace
+    else if (valueChange && shieldOn) {
+        for (let i = 0; i < asteroidArray.length; i++) {
+            if (asteroidArray[i].collision(playerShip)) {
+                console.log("collision")
+                // playerShip.dmgHull()
+                alert("collision")
+                asteroidArray[i].y = -10
+            }
+        }
+    }
 
 }
 animate()
