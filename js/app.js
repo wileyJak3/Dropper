@@ -428,6 +428,17 @@ let animate = () => {
             }
         }
     }
+     //* Collision Detection for outside of warp/hyperspace and have shields
+     else if (shieldOn) {
+        for (let i = 0; i < asteroidArray.length; i++) {
+            if (asteroidArray[i].collision(playerShip)) {
+                console.log("collision")
+                // playerShip.dmgHull()
+                alert("collision, nuclear shield absorbs dmg")
+                asteroidArray[i] = new astroid()
+            }
+        }
+    }
 
 }
 animate()
