@@ -159,7 +159,7 @@ class Spaceship extends Img {
     }
 }
 
-    //
+//
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
 
@@ -204,9 +204,12 @@ class PowerUps extends Spaceship {
 
         console.log("working")
     }
-
+    checkPowerUp = () => {
+        (this.powerUpNum == 0) ? this.radioactive++
+            : (this.powerUpNum == 1) ? this.redCrystal++
+            :this.blueCrystal++
+    }
 }
-
 
 
 //* checks the arrow key presses to control the spaceship
