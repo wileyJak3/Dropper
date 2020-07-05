@@ -317,6 +317,16 @@ let animate = () => {
     //* clear the screen so multiple circles don't just stack on each other and actually disappear when another appears to simulate animation.
     context.clearRect(0, 0, innerWidth, innerHeight)
 
+    //? ─── PLAYER SCORE ───────────────────────────────────────────────────────────────
+    //
+
+    iterationCounter++
+    while (iterationCounter % 100 == 0) {
+        playerShip.shipScore += 10
+        // alert(playerShip.shipScore)
+        break
+    }
+    
     //* draws the asteroids stored in the asteroid array onto the canvas
     for (let i = 0; i < asteroidArray.length; i++) {
         asteroidArray[i].draw()
