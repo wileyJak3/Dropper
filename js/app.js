@@ -404,25 +404,28 @@ let animate = () => {
     //? ─── !SECTION ────────────────────────────────────────────────────────────────────
     //
 
-
-    //* draws the asteroids stored in the asteroid array onto the canvas
     for (let i = 0; i < asteroidArray.length; i++) {
         asteroidArray[i].draw()
     }
-
     for (let i = 0; i < asteroidArray.length; i++) {
         // circleArray[i].checkOffPage()
         asteroidArray[i].checkOffPage()
     }
+    powerUpSpawn.draw()
+    powerUpSpawn.checkOffPage()
 
-    //* draws the player ship onto the canvas
     playerShip.draw()
 
-    //* checks for a collision between player ship and the asteroids
-    for (let i = 0; i < asteroidArray.length; i++) {
-        if (asteroidArray[i].collision(playerShip)) {
-            console.log("collision")
-            alert("collision")
+    //* Collision Detection for outside of warp/hyperspace
+
+    if (valueChange == false && shieldOn == false) {
+        for (let i = 0; i < asteroidArray.length; i++) {
+            if (asteroidArray[i].collision(playerShip)) {
+                console.log("collision")
+                playerShip.dmgHull()
+                alert("collision")
+                asteroidArray[i] = new astroid()
+            }
         }
     }
 
