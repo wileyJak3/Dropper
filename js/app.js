@@ -461,6 +461,18 @@ let animate = () => {
             }
         }
     }
+    //* Power Ups collision detection
+    if (powerUpSpawn.collision(playerShip)) {
+        //! cancelAnimationFrame(myReq); this is how I end game
+        console.log("powerUp collision")
+        powerUpSpawn.checkPowerUp()
+        playerShip.shipScore += (Math.floor(Math.random() * 30)) + 10
+        alert(`powerUP collision\n Score: ${playerShip.shipScore}`)
+
+
+
+        powerUpSpawn = new PowerUps()
+    }
 
 }
 animate()
