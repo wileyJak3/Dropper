@@ -389,6 +389,22 @@ let animate = () => {
     //? ─── !SECTION ────────────────────────────────────────────────────────────────────
     //
 
+    //
+    //? ─── SHIELDS SECTION ────────────────────────────────────────────────────────────────────
+    //
+    if (shieldOn == true && powerUpTimer == shieldCounter) {
+        shieldOn = false
+        alert("shields have failed")
+    }
+
+    console.log(shieldCounter)
+    shieldCounter++
+
+    //
+    //? ─── !SECTION ────────────────────────────────────────────────────────────────────
+    //
+
+
     //* draws the asteroids stored in the asteroid array onto the canvas
     for (let i = 0; i < asteroidArray.length; i++) {
         asteroidArray[i].draw()
