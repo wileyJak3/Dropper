@@ -341,6 +341,22 @@ let animate = () => {
     }
 
 
+    if (warpCounter == powerUpTimer && valueChange == true) {
+        alert("exiting warp")
+        for (let i = 0; i < asteroidArray.length; i++) {
+            asteroidArray[i].speedMagIncrease(2)
+            valueChange = false
+
+        }
+    }
+
+    console.log(warpCounter)
+    warpCounter++
+
+    //
+    // ─── !SECTION ────────────────────────────────────────────────────────────────────
+    //
+
     //* draws the asteroids stored in the asteroid array onto the canvas
     for (let i = 0; i < asteroidArray.length; i++) {
         asteroidArray[i].draw()
