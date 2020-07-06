@@ -85,3 +85,15 @@ body {
    
 
 }
+
+.gameScreen {
+    /* border: 1px solid black; */
+    /* background: red; */
+    /* height: 100vh; This works for setting canvas to entire page
+width: 100vw */
+    grid-column: 2/3;
+    grid-row: 2/3;
+    display: flex;
+    width: 75vw;
+    height: 50vh;
+}
