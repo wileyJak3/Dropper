@@ -34,3 +34,10 @@ body {
     background-color: blue;
     border: white 2px solid;
 }
+
+.gameTitle {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    background-color: red;
+    border: white 2px solid;
+}
