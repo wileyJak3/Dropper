@@ -123,3 +123,15 @@ width: 100vw */
     color:greenyellow;
 
 }
+.spaceTimeGenerator{
+    /* border: red solid 2px; */
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    color: blue;
+}
+
+#blueCrystal{
+    padding 9%;
+    
+}
