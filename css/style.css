@@ -62,3 +62,10 @@ body {
     background-color:teal;
     border: white 2px solid;
 }
+
+.lives {
+    grid-column: 3/4;
+    grid-row: 3/4;
+    background-color:orchid;
+    border: white 2px solid;
+}
