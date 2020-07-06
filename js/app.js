@@ -431,11 +431,12 @@ document.onkeydown = function (event) {
 //~ ─── ASTEROID ARRAY CREATION ────────────────────────────────────────────────────
 //
 
+
 //* Initializes empty array of asteroids
 let asteroidArray = [];
-
+let initAstroidNum = 15
 //* loop to creates astroids and pushes them into array
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < initAstroidNum; i++) {
     asteroidArray.push(new astroid())
 }
 let playerWarp;
@@ -453,6 +454,16 @@ let shieldCounter = 0
 let powerUpTimer = 100
 let valueChange = false;
 let shieldOn = false;
+let endGame = false
+let myReq;
+let outcomeVar = 0
+let stage = 0
+let previousVal = 0
+
+
+//
+//~ ─── SECTION ANIMATE FUNCTION ───────────────────────────────────────────────────
+//
 
 
 let animate = () => {
