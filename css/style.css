@@ -27,3 +27,10 @@ body {
    
 
 }
+
+.character {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    background-color: blue;
+    border: white 2px solid;
+}
