@@ -242,10 +242,15 @@ class PowerUps extends Spaceship {
         console.log("working")
     }
 
-    checkPowerUp = () => {
-        (this.powerUpNum == 0) ? this.radioactive++
-            : (this.powerUpNum == 1) ? this.redCrystal++
-            :this.blueCrystal++
+    checkPowerUp = (shipObj) => {
+        if (this.powerUpNum == 0) {
+            shipObj.radioactive++
+        } else if (this.powerUpNum == 1) {
+            shipObj.redCrystal++
+        } else if (this.powerUpNum == 2) {
+            shipObj.blueCrystal++
+        }
+
     }
 }
 
