@@ -170,6 +170,23 @@ class Spaceship extends Img {
         // console.log("working")
     }
 
+    //* function used to keep space ship from leaving page
+    edgeBounce = () => {
+        
+        //* if (x > innerWidth) { // using the point at center half circle cut off on the edge (AKA bounce of side of screen)
+        if ((this.x + 80) + this.size / 3 > canvas.width || (this.x + 80) - this.size / 3 < 0) { 
+            
+            //* switch value with contact at the edge of the circle
+            this.xVel = -this.xVel * .7;
+        }
+
+        //* bounce off top
+        if (this.y + this.size / 3 > canvas.height || this.y - this.size / 3 < 0) { 
+            this.yVel = -this.yVel * .7;
+        }
+
+    }
+
 }
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
