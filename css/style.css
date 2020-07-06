@@ -41,3 +41,10 @@ body {
     background-color: red;
     border: white 2px solid;
 }
+
+.empty {
+    grid-column: 3/4;
+    grid-row: 1/2;
+    background-color:green;
+    border: white 2px solid;
+}
