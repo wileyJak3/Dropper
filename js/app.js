@@ -290,12 +290,48 @@ let playAgain = () => {
     animate()
 }
 
+//
+//~ ─── !SECTION ───────────────────────────────────────────────────────────────────
+//
 
+//
+//~ ─── SECTION DIFFICULTY BOOST ────────────────────────────────────────────────────
+//
 
+// Ways to increase difficulty:
+// Rocks move faster 
+// Rocks increase in size
+// rocks increase in number
+
+let difficultyBoost = (obj) => {
+    stage++
+
+    let difficultyNum = Math.ceil(Math.random() * 3)
+
+    if (difficultyNum == 1) {
+        for (let i = 0; i < initAstroidNum; i++) {
+            asteroidArray[i].speedMagIncrease(1.2)
+        }
+        alert(`Stage ${stage}:The asteroids are moving faster`)
+
+    } else if (difficultyNum == 2) {
+        alert(`Stage ${stage}:The asteroids are getting larger`)
+        for (let i = 0; i < initAstroidNum; i++) {
+            asteroidArray[i].sizeMagIncrease(1.2)
+        }
+    } else if (difficultyNum == 3) {
+        for (asteroidsNum = 0; asteroidsNum < Math.floor(Math.random * 10) + 2; asteroidsNum++) {
+            asteroidArray.push(new astroid())
+        }
+        alert(`Stage ${stage}:The asteroids field is getting denser`)
+    }
+
+}
 
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
+
 
 
 
