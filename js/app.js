@@ -328,6 +328,16 @@ let difficultyBoost = (obj) => {
 
 }
 
+let raiseDifficulty = () => {
+    let randModNum = Math.floor(Math.random() * 200) + 100
+    if ((playerShip.shipScore - previousVal) > randModNum) {
+        previousVal = playerShip.shipScore
+        difficultyBoost(asteroidArray)
+    }
+
+
+}
+
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
