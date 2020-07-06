@@ -11,3 +11,19 @@ body {
     /* body hs a default margin of 8 pixels */
     margin: 0;
 }
+.mainContainer {
+    border: solid;
+    height: 97vh;
+    width: 98.5vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: .5%;
+    padding: .5%;
+    background-color: black;
+}
+
+.mainContainer>div {
+   
+
+}
