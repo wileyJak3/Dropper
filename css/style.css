@@ -48,3 +48,10 @@ body {
     background-color:green;
     border: white 2px solid;
 }
+
+.level {
+    grid-column: 1/2;
+    grid-row: 3/4;
+    background-color:olive;
+    border: white 2px solid;
+}
