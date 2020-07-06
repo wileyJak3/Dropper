@@ -478,9 +478,22 @@ let animate = () => {
 
 
     //* clear the screen so multiple circles don't just stack on each other and actually disappear when another appears to simulate animation.
-    context.clearRect(0, 0, innerWidth, innerHeight)
+    context.clearRect(0, 0, canvas.width, canvas.height)
 
-    //
+    //? ─── CHECK PLAYER DEAD ───────────────────────────────────────────────────────────────
+
+    if (playerShip.hull <= 0) {
+        //!call end game function
+        endGame = true
+        alert("GAME ENDED")
+        cancelAnimationFrame(myReq)
+        context.clearRect(0, 0, canvas.width, canvas.height)
+        outcomeVar = 2 //! Player has died
+        alert(`${outcomeVar} we are out of animate`)
+        return 2
+    
+    }
+
 
     //
     //? ─── PLAYER SCORE ───────────────────────────────────────────────────────────────
