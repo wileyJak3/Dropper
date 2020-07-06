@@ -97,3 +97,14 @@ width: 100vw */
     width: 75vw;
     height: 50vh;
 }
+.inventory_2 {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    display: flex;
+    color: white;
+    /* background-color:lavenderblush; */
+    border: white 2px solid;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
