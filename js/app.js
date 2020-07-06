@@ -335,14 +335,11 @@ let raiseDifficulty = () => {
         difficultyBoost(asteroidArray)
     }
 
-
 }
 
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
-
-
 
 
 
@@ -360,20 +357,20 @@ document.onkeydown = function (event) {
     switch (event.key) {
         case 'ArrowUp':
             // up arrow
-            playerShip.yVel = playerShip.yVel - 1.5
+            playerShip.yVel = playerShip.yVel - 1.2
             break;
         case 'ArrowDown':
             // down arrow
-            playerShip.yVel = playerShip.yVel + 1.5
+            playerShip.yVel = playerShip.yVel + 1.2
             break;
         case 'ArrowRight':
             // right arrow
-            playerShip.xVel = playerShip.xVel + 2.5
+            playerShip.xVel = playerShip.xVel + 2.0
             break
 
         case 'ArrowLeft':
             // left arrow
-            playerShip.xVel = playerShip.xVel - 2.5
+            playerShip.xVel = playerShip.xVel - 2.0
             break;
 
         case 'w':
@@ -391,13 +388,27 @@ document.onkeydown = function (event) {
             shieldCounter = 0
             shieldOn = true
             break
+        case 'e':
+            if (gamePause == true) {
+                endGame = true
+                alert("GAME ENDED")
+                if (endGame == true) {
+                    cancelAnimationFrame(myReq)
+                    context.clearRect(0, 0, canvas.width, canvas.height)
+                    outcomeVar = 1
+                }
+                alert(`${outcomeVar} we are out of animate`)
+                playAgain() //! play again works
+                break
+            }
+            break
         case ' ':
             if (gameTog == true) {
                 gameTog = false
                 gamePause = true
                 alert("GAME PAUSED")
                 break
-            } else {
+            } else if (gameTog == false && endGame == false) {
                 gameTog = true
                 gamePause = false
                 animate()
@@ -405,10 +416,9 @@ document.onkeydown = function (event) {
                 break
             }
 
-
-
     }
 };
+
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
