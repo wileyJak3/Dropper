@@ -69,3 +69,19 @@ body {
     background-color:orchid;
     border: white 2px solid;
 }
+.inventory {
+    grid-column: 3/4;
+    grid-row: 2/3;
+    
+    background-color:powderblue;
+    border: white 2px solid;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+
+}
+.inventory>div {
+    border: red solid 2px;
+   
+
+}
