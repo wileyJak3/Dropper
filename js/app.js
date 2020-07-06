@@ -2,11 +2,15 @@
 let canvas = document.querySelector('canvas')
 
 //* sets the length and width of the entire canvas to the window length and width
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
+// canvas.width = window.innerWidth;
+// canvas.height = window.innerHeight;
+$(document).ready(function() {
+    canvas.width = $(".gameScreen").width();
+    canvas.height = $(".gameScreen").height();
+  });
+canvas.width = canvas.width
+canvas.height = canvas.height
 let context = canvas.getContext('2d');
-
 
 
 
