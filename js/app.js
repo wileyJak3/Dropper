@@ -258,6 +258,47 @@ class PowerUps extends Spaceship {
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
 
+//
+//~ ─── SECTION PLAY AGAIN FUNCTION ────────────────────────────────────────────────
+//
+let playAgain = () => {
+    //* Initializes empty array of asteroids
+    let asteroidArray = [];
+
+    //* loop to creates asteroids and pushes them into array
+    for (let i = 0; i < initAstroidNum; i++) {
+        asteroidArray.push(new astroid())
+    }
+    playerWarp;
+    timeFreeze;
+    gameTog = true
+    gamePause = false
+    //* creates a space ship for the player to control
+    playerShip = new Spaceship()
+    //* Create powerUp obj
+    powerUpSpawn = new PowerUps()
+    iterationCounter = 0
+    warpCounter = 0
+    timeCounter = 0
+    shieldCounter = 0
+    powerUpTimer = 100
+    valueChange = false;
+    shieldOn = false;
+    endGame = false
+    myReq;
+    outcomeVar = 0
+    animate()
+}
+
+
+
+
+//
+//~ ─── !SECTION ───────────────────────────────────────────────────────────────────
+//
+
+
+
 
 //
 //~ ───  SECTION KEY ASSIGNMENTS ────────────────────────────────────────────────────────────
