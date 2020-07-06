@@ -536,7 +536,7 @@ let animate = () => {
     warpCounter++
 
     //
-    // ─── !SECTION ────────────────────────────────────────────────────────────────────
+    //~ ─── !SECTION ────────────────────────────────────────────────────────────────────
     //
 
     //? ───  SECTION TIME FREEZE  ─────────────────────────────────────────────────────────
@@ -599,7 +599,8 @@ let animate = () => {
     powerUpSpawn.checkOffPage()
 
     playerShip.draw()
-
+    playerShip.edgeBounce()
+    
     //* Collision Detection for outside of warp/hyperspace
 
     if (valueChange == false && shieldOn == false) {
