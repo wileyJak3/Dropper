@@ -106,9 +106,11 @@ class astroid extends Img {
 
         console.log("working")
     }
+    sizeMagIncrease(num) {
+        this.sizeWidth = this.sizeWidth * num
+    }
 
 }
-
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
