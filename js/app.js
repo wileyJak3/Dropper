@@ -4,18 +4,18 @@ let canvas = document.querySelector('canvas')
 //* sets the length and width of the entire canvas to the window length and width
 // canvas.width = window.innerWidth;
 // canvas.height = window.innerHeight;
-$(document).ready(function() {
+$(document).ready(function () {
     canvas.width = $(".gameScreen").width();
     canvas.height = $(".gameScreen").height();
-  });
+});
 canvas.width = canvas.width
 canvas.height = canvas.height
 let context = canvas.getContext('2d');
 
-
-
 //* class to be extended by all images class that need the collision method
 
+
+//
 //~ ───  SECTION IMG CLASS  ──────────────────────────────────────────────────────────────────
 //
 
@@ -67,10 +67,8 @@ class Img {
 
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
+
 //
-
-
-
 //~ ─── SECTION ASTROID CLASS  ──────────────────────────────────────────────────────
 //
 
@@ -80,7 +78,7 @@ class astroid extends Img {
 
     constructor() {
         super()
-        this.x = Math.random() * canvas.width
+        this.x = Math.random() * (canvas.width)
         this.y = 0
         this.xVel = (Math.random() - 0.6) * 2
         this.yVel = (Math.random()) * 2
@@ -111,6 +109,7 @@ class astroid extends Img {
     }
 
 }
+
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
@@ -128,7 +127,7 @@ class Spaceship extends Img {
         this.redCrystal = 0
         this.radioactive = 0
         this.x = canvas.width / 2
-        this.y = canvas.height - 90
+        this.y = canvas.height + 200
         this.xVel = 0
         this.yVel = 0
         this.size = 100
@@ -138,8 +137,10 @@ class Spaceship extends Img {
 
     //* references the html image and draws it onto the canvas
     draw = () => {
+        
         let img = document.getElementById("spaceship");
         context.drawImage(img, this.x, this.y, this.size, this.size);
+        
 
 
         this.x = this.x + this.xVel // X velocity ( rate at which something moves in each direction)
@@ -147,11 +148,18 @@ class Spaceship extends Img {
 
     }
 
+    // this message subtracts the damage taken from ship hull
     dmgHull = () => {
         let randDmgVal = (Math.random() * 10) + 10
         let tempDmgVal = this.hull - randDmgVal
-        alert(`${this.hull} - ${randDmgVal} = ${tempDmgVal}`)
-        this.hull = tempDmgVal
+        //alert(`${this.hull} - ${randDmgVal} = ${tempDmgVal}`)
+        this.hull = Math.round(tempDmgVal).toFixed(0)
+
+        if (this.hull > 0) {
+            document.getElementById('healthNum').textContent = this.hull;
+        } else {
+            document.getElementById('healthNum').textContent = 0;
+        }
 
     }
 
@@ -170,13 +178,12 @@ class Spaceship extends Img {
         // console.log("working")
     }
 
-    //* function used to keep space ship from leaving page
+
+    //* function will be used to keep space ship from leaving page
     edgeBounce = () => {
-        
-        //* if (x > innerWidth) { // using the point at center half circle cut off on the edge (AKA bounce of side of screen)
+
+        //* bounce off side of screen
         if ((this.x + 80) + this.size / 3 > canvas.width || (this.x + 80) - this.size / 3 < 0) { 
-            
-            //* switch value with contact at the edge of the circle
             this.xVel = -this.xVel * .7;
         }
 
@@ -186,22 +193,32 @@ class Spaceship extends Img {
         }
 
     }
+    // resetShip = () =>{
+    //     this.blueCrystal = 0
+    //     this.redCrystal = 0
+    //     this.radioactive = 0
+    //     this.x = canvas.width / 2
+    //     this.y = canvas.height + 200
+    //     this.xVel = 0
+    //     this.yVel = 0
+    //     this.size = 100
+    //     this.hull = 100
+    //     this.shipScore = 0
+    // }
 
 }
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
 
-
 // //* creates a space ship for the player to control
 // playerShip = new Spaceship()
 
-
-
-
 //
 //~ ─── SECTION POWERUPS CLASS  ─────────────────────────────────────────────────────
-//
+
+//*  Creates a randomly selected power up to be generated and drawn o the canvas
+// ────────────────────────────────────────────────────────────────────────────────
 
 
 class PowerUps extends Spaceship {
@@ -214,19 +231,23 @@ class PowerUps extends Spaceship {
         this.yVel = (Math.random()) * 2
         this.powerUpNum = Math.floor(Math.random() * 3)
         this.sizeWidth = Math.random() * 90 + 10
+
+        //* powerUp array
         this.powerUpArr = [document.getElementById("radioactive"), document.getElementById("redCrystal"), document.getElementById("blueCrystal")]
     }
 
 
 
+    //* draw method draws the randomly selected power up on canvas
     draw = () => {
-
         let img = this.powerUpArr[this.powerUpNum]
         context.drawImage(img, this.x, this.y, this.sizeWidth, this.sizeWidth);
         this.x += this.xVel // X velocity ( rate at which something moves in each direction)
         this.y += this.yVel
     }
 
+
+//* method changes velocity to negative if power up goes off page
     checkOffPage = () => {
         if (this.y < 0 || this.y > canvas.height) {
             this.y = 0
@@ -242,39 +263,85 @@ class PowerUps extends Spaceship {
         console.log("working")
     }
 
+    //* checks what power up has been generated and assigns it to the respective player variables 
     checkPowerUp = (shipObj) => {
         if (this.powerUpNum == 0) {
             shipObj.radioactive++
+            document.getElementById('shieldNum').textContent = shipObj.radioactive;
         } else if (this.powerUpNum == 1) {
             shipObj.redCrystal++
+            document.getElementById('warpNum').textContent = shipObj.redCrystal;
+
         } else if (this.powerUpNum == 2) {
             shipObj.blueCrystal++
+            document.getElementById('timeNum').textContent = shipObj.blueCrystal;
         }
 
     }
+
 }
 
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
 
-//
-//~ ─── SECTION PLAY AGAIN FUNCTION ────────────────────────────────────────────────
-//
-let playAgain = () => {
-    //* Initializes empty array of asteroids
-    let asteroidArray = [];
 
-    //* loop to creates asteroids and pushes them into array
+//
+//~ ─── SECTION PLAY AGAIN FUNCTIONS ────────────────────────────────────────────────
+//
+ 
+
+
+
+// let newPlayerArray = [];
+// //* loop to creates astroids and pushes them into array
+// for (let i = 0; i < 1; i++) {
+//     newPlayerArray.push(new Spaceship())
+// }
+
+
+//* Resets the game vaules to the initial state
+let resetVal = () => {
+    let newPlayerArray = [];
+//* loop to creates astroids and pushes them into array
+for (let i = 0; i < 1; i++) {
+    newPlayerArray.push(new Spaceship())
+}
+
+    //* Initializes empty array of asteroids
+    asteroidArray = [];
+
+    //* Initializes empty array of asteroids
+    asteroidArray = [];
+    initAstroidNum = 15
+    //* loop to creates astroids and pushes them into array
     for (let i = 0; i < initAstroidNum; i++) {
         asteroidArray.push(new astroid())
     }
+    
     playerWarp;
     timeFreeze;
     gameTog = true
     gamePause = false
     //* creates a space ship for the player to control
-    playerShip = new Spaceship()
+    // playerShip = newPlayerArray[0]
+
+    //* reset values and display them on the dom
+    playerShip.hull = 100
+    document.getElementById('healthNum').textContent = playerShip.hull;
+    playerShip.shipScore = 0
+    document.getElementById('scoreNum').textContent = playerShip.shipScore;
+    playerShip.radioactive = 0
+    document.getElementById('shieldNum').textContent = playerShip.radioactive;
+    playerShip.redCrystal = 0
+    document.getElementById('warpNum').textContent = playerShip.redCrystal;
+    playerShip.blueCrystal = 0
+    document.getElementById('timeNum').textContent = playerShip.blueCrystal;
+    playerShip.x = canvas.width/3
+    playerShip.y = canvas.height/3
+    playerShip.xVel = 0
+    playerShip.yVel = 0
+
     //* Create powerUp obj
     powerUpSpawn = new PowerUps()
     iterationCounter = 0
@@ -287,6 +354,16 @@ let playAgain = () => {
     endGame = false
     myReq;
     outcomeVar = 0
+    stage = 0
+    document.getElementById('levelNum').textContent = stage;
+    previousVal = 0
+    
+}
+
+//* restarts the game
+playAgain = () => {
+    $(".hiddenScreen").hide();
+    resetVal()
     animate()
 }
 
@@ -305,6 +382,7 @@ let playAgain = () => {
 
 let difficultyBoost = (obj) => {
     stage++
+    document.getElementById('levelNum').textContent = stage;
 
     let difficultyNum = Math.ceil(Math.random() * 3)
 
@@ -312,10 +390,10 @@ let difficultyBoost = (obj) => {
         for (let i = 0; i < initAstroidNum; i++) {
             asteroidArray[i].speedMagIncrease(1.2)
         }
-        alert(`Stage ${stage}:The asteroids are moving faster`)
+        //alert(`Stage ${stage}:The asteroids are moving faster`)
 
     } else if (difficultyNum == 2) {
-        alert(`Stage ${stage}:The asteroids are getting larger`)
+        //alert(`Stage ${stage}:The asteroids are getting larger`)
         for (let i = 0; i < initAstroidNum; i++) {
             asteroidArray[i].sizeMagIncrease(1.2)
         }
@@ -323,7 +401,7 @@ let difficultyBoost = (obj) => {
         for (asteroidsNum = 0; asteroidsNum < Math.floor(Math.random * 10) + 2; asteroidsNum++) {
             asteroidArray.push(new astroid())
         }
-        alert(`Stage ${stage}:The asteroids field is getting denser`)
+        //alert(`Stage ${stage}:The asteroids field is getting denser`)
     }
 
 }
@@ -341,12 +419,9 @@ let raiseDifficulty = () => {
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
 
-
-
 //
 //~ ───  SECTION KEY ASSIGNMENTS ────────────────────────────────────────────────────────────
 //
-
 
 // //* Create powerUp obj
 // powerUpSpawn = new PowerUps()
@@ -374,31 +449,36 @@ document.onkeydown = function (event) {
             break;
 
         case 'w':
-            alert("you pressed the w key (warp speed)")
+            //alert("you pressed the w key (warp speed)")
             warpCounter = 0
             playerWarp = true
             break
         case 'a':
-            alert("you pressed the a key (time/space generator)")
+            //alert("you pressed the a key (time/space generator)")
             timeCounter = 0
             timeFreeze = true
+
             break
         case 's':
-            alert("you pressed the s key (shields)")
+            //alert("you pressed the s key (shields)")
             shieldCounter = 0
             shieldOn = true
+
             break
         case 'e':
             if (gamePause == true) {
                 endGame = true
-                alert("GAME ENDED")
+                $(".pause").show();
+                //alert("GAME ENDED")
                 if (endGame == true) {
                     cancelAnimationFrame(myReq)
                     context.clearRect(0, 0, canvas.width, canvas.height)
                     outcomeVar = 1
+                    $(".pause").hide();
+                    $(".startGame").show();
                 }
-                alert(`${outcomeVar} we are out of animate`)
-                playAgain() //! play again works
+                //alert(`${outcomeVar} we are out of animate`)
+                // playAgain() //! play again works
                 break
             }
             break
@@ -406,13 +486,15 @@ document.onkeydown = function (event) {
             if (gameTog == true) {
                 gameTog = false
                 gamePause = true
-                alert("GAME PAUSED")
+                $(".pause").show();
+                // alert("GAME PAUSED")
                 break
             } else if (gameTog == false && endGame == false) {
+                $(".pause").hide();
                 gameTog = true
                 gamePause = false
                 animate()
-                alert("resumed")
+                // alert("resumed")
                 break
             }
 
@@ -424,13 +506,11 @@ document.onkeydown = function (event) {
 //
 
 
-//
 //~ ─── SECTION FUNCTION CALLS AND GLOBALS  ─────────────────────────────────────────
 //
 //
 //~ ─── ASTEROID ARRAY CREATION ────────────────────────────────────────────────────
 //
-
 
 //* Initializes empty array of asteroids
 let asteroidArray = [];
@@ -467,31 +547,42 @@ let previousVal = 0
 
 
 let animate = () => {
+    $(".startGame").hide();
 
     //* the request animation frame function is basically creating a loop, It's basically cycling through over and over again until told to stop
 
     if (gamePause == false) {
         // myReq = 
-        requestAnimationFrame(animate)
+        myReq = requestAnimationFrame(animate)
         //cancelAnimationFrame(myReq)
     }
 
+    // if(endGame  == true){
+    // cancelAnimationFrame(myReq)
+    // context.clearRect(0, 0, innerWidth, innerHeight)
+    //  return 1
+    // }
 
     //* clear the screen so multiple circles don't just stack on each other and actually disappear when another appears to simulate animation.
     context.clearRect(0, 0, canvas.width, canvas.height)
+
 
     //? ─── CHECK PLAYER DEAD ───────────────────────────────────────────────────────────────
 
     if (playerShip.hull <= 0) {
         //!call end game function
         endGame = true
-        alert("GAME ENDED")
+        // alert("GAME ENDED")
+        
         cancelAnimationFrame(myReq)
+       // $(".hiddenScreen").show();
         context.clearRect(0, 0, canvas.width, canvas.height)
         outcomeVar = 2 //! Player has died
-        alert(`${outcomeVar} we are out of animate`)
+        // alert(`${outcomeVar} we are out of animate`)
+        $(".hiddenScreen").show();
+        
         return 2
-    
+
     }
 
     //? ─── DIFFICULTY RAISED ───────────────────────────────────────────────────────────────
@@ -501,18 +592,18 @@ let animate = () => {
     //
     //? ─── PLAYER SCORE ───────────────────────────────────────────────────────────────
     //
-
     iterationCounter++
     while (iterationCounter % 100 == 0) {
         playerShip.shipScore += 10
         // alert(playerShip.shipScore)
+        document.getElementById('scoreNum').textContent = playerShip.shipScore;
         break
     }
 
     //? ─── SECTION WARP SPEED  ─────────────────────────────────────────────────────────
     //
 
-    if (playerWarp == true) {
+    if (playerWarp == true && playerShip.redCrystal > 0) {
         for (let i = 0; i < asteroidArray.length; i++) {
             asteroidArray[i].speedMagReduce(2)
             // warpCounter = 0
@@ -520,16 +611,19 @@ let animate = () => {
 
         }
         playerWarp = false
+        playerShip.redCrystal -= 1
+        document.getElementById('warpNum').textContent = playerShip.redCrystal;
+        $(('#powerUp')).text('Warp');
     }
 
-
     if (warpCounter == powerUpTimer && valueChange == true) {
-        alert("exiting warp")
+        //alert("exiting warp")
         for (let i = 0; i < asteroidArray.length; i++) {
             asteroidArray[i].speedMagIncrease(2)
             valueChange = false
 
         }
+        $(('#powerUp')).text('none');
     }
 
     console.log(warpCounter)
@@ -544,7 +638,7 @@ let animate = () => {
 
 
 
-    if (timeFreeze == true) {
+    if (timeFreeze == true && playerShip.blueCrystal > 0) {
         for (let i = 0; i < asteroidArray.length; i++) {
             asteroidArray[i].speedMagReduce(100)
             // warpCounter = 0
@@ -552,16 +646,23 @@ let animate = () => {
 
         }
         timeFreeze = false
+        playerShip.blueCrystal -= 1
+        document.getElementById('timeNum').textContent = playerShip.blueCrystal;
+        document.getElementById('powerUp').textContent = `Time Freeze`;
+        
+        
     }
 
 
     if (timeCounter == powerUpTimer && valueChange == true) {
-        alert("space/time generator failing")
+        //alert("space/time generator failing")
         for (let i = 0; i < asteroidArray.length; i++) {
             asteroidArray[i].speedMagIncrease(100)
             valueChange = false
+            
 
         }
+        $(('#powerUp')).text('none');
     }
 
     console.log(timeCounter)
@@ -575,12 +676,17 @@ let animate = () => {
     //? ─── SHIELDS SECTION ────────────────────────────────────────────────────────────────────
     //
     if (shieldOn == true && powerUpTimer == shieldCounter) {
-        shieldOn = false
-        alert("shields have failed")
+        playerShip.radioactive -= 1
+        document.getElementById('shieldNum').textContent = playerShip.radioactive;
+        $(('#powerUp')).text('none');
+         shieldOn = false
+        //alert("shields have failed")
     }
-
-    console.log(shieldCounter)
-    shieldCounter++
+    if (shieldOn == true) {
+        console.log(shieldCounter)
+        document.getElementById('powerUp').textContent = `Shields`;
+        shieldCounter++
+    }
 
     //
     //? ─── !SECTION ────────────────────────────────────────────────────────────────────
@@ -594,13 +700,14 @@ let animate = () => {
     for (let i = 0; i < asteroidArray.length; i++) {
         // circleArray[i].checkOffPage()
         asteroidArray[i].checkOffPage()
+
     }
     powerUpSpawn.draw()
     powerUpSpawn.checkOffPage()
 
     playerShip.draw()
     playerShip.edgeBounce()
-    
+
     //* Collision Detection for outside of warp/hyperspace
 
     if (valueChange == false && shieldOn == false) {
@@ -608,18 +715,18 @@ let animate = () => {
             if (asteroidArray[i].collision(playerShip)) {
                 console.log("collision")
                 playerShip.dmgHull()
-                alert("collision")
+                //alert("collision")
                 asteroidArray[i] = new astroid()
             }
         }
     }
     //* Collision Detection for outside of warp/hyperspace and have shields
-    else if (shieldOn) {
+    else if (shieldOn && playerShip.radioactive > 0) {
         for (let i = 0; i < asteroidArray.length; i++) {
             if (asteroidArray[i].collision(playerShip)) {
                 console.log("collision")
                 // playerShip.dmgHull()
-                alert("collision, nuclear shield absorbs dmg")
+                //alert("collision, nuclear shield absorbs dmg")
                 asteroidArray[i] = new astroid()
             }
         }
@@ -630,18 +737,18 @@ let animate = () => {
             if (asteroidArray[i].collision(playerShip)) {
                 console.log("collision")
                 // playerShip.dmgHull()
-                alert("collision")
+                //alert("collision")
                 asteroidArray[i].y = -10
             }
         }
     }
-     //* Collision Detection for inside of warp/hyperspace and have shields 
+    //* Collision Detection for inside of warp/hyperspace and have shields 
     else if (valueChange && !shieldOn) {
         for (let i = 0; i < asteroidArray.length; i++) {
             if (asteroidArray[i].collision(playerShip)) {
                 console.log("collision")
                 playerShip.dmgHull()
-                alert("collision")
+                //alert("collision")
                 asteroidArray[i].y = -10
             }
         }
@@ -652,19 +759,30 @@ let animate = () => {
     if (powerUpSpawn.collision(playerShip)) {
         //! cancelAnimationFrame(myReq); this is how I end game
         console.log("powerUp collision")
-        powerUpSpawn.checkPowerUp()
+        powerUpSpawn.checkPowerUp(playerShip)
+        // alert(playerShip.blueCrystal)
+        // alert(powerUpSpawn.radioactive)
+        // alert(playerShip.redCrystal)
         playerShip.shipScore += (Math.floor(Math.random() * 30)) + 10
-        alert(`powerUP collision\n Score: ${playerShip.shipScore}`)
+        //alert(`powerUP collision\n Score: ${playerShip.shipScore}`)
+        document.getElementById('scoreNum').textContent = playerShip.shipScore;
 
 
 
         powerUpSpawn = new PowerUps()
     }
 }
+$(".pause").hide();
+$(".hiddenScreen").hide();
+document.getElementById("spaceshipRestart").addEventListener("click",playAgain);
+document.getElementById("spaceshipStart").addEventListener("click", playAgain);
+//animate()
 
+// alert(outcomeVar)
+// alert(outcomeVar)
 
-animate()
 
 //
 //~ ─── !SECTION ───────────────────────────────────────────────────────────────────
 //
+//~ ─── !SECTION ───────────────────────────────────────────────────────────────────
