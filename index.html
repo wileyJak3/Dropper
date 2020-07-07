@@ -4,49 +4,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas Resize</title>
+    <title>ASTEROID</title>
     <link rel="stylesheet" href="style.css">
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    
+
 </head>
 
 <body>
 
-
-
-
     <!-- <h1> Hello World</h1> -->
     <div class="mainContainer">
-        <div class="character">character</div>
+        <div class="score">
+            <h3>SCORE</h3>
+            <p id="scoreNum">0</p>
+        </div>
         <div class="gameTitle">gameTitle</div>
-        <div class="empty">empty</div>
-        <div class="level">level</div>
-        <div class="score">score</div>
+        <div class="health">
+            <h3>HEALTH</h3>
+            <p id="healthNum">100</p>
+        </div>
+        <div class="level">
+            <h3>LEVEL</h3>
+            <p id="levelNum">0</p>
+
+
+        </div>
+        <div class="hiddenScreen">
+            <h1>GAMEOVER</h1>
+            <button><img id="spaceshipRestart" width="130vw" height="130vh" src="assets/spaceship.png" alt="spaceship"> </button>
+            <h3>PLAY AGAIN</h3>
+
+        </div>
         <!-- <div class="lives">lives</div> -->
         <div class="inventory">
             <!-- inventory -->
-            <div class="lives"></div>
-            <div class="warpSpeed">hi</div>
+            <h2 id="warpSpeedHeader">Warp Speed</h2>
+            <div class="warpSpeed">
+                <p id="warpNum">0</p> <!-- assign to be changed in js -->
+                <img id="redCrystal" width="130vw" height="130vh" src="./assets/redcrystal.png" alt="red crystal">
+
+            </div>
+            <h2 id="shipsHeader">Ships</h2>
+            <div class="lives">
+
+                <p id="livesNum">0</p> <!-- assign to be changed in js -->
+                <img id="spaceshipLives" width="130vw" height="130vh" src="assets/spaceship.png" alt="spaceship">
+
+            </div>
 
         </div>
         <div class="inventory_2">
             <!-- inventory -->
-            <h2>Nuclear Shield</h2>
+            <h2 id="nukShieldHeader">Nuclear Shield</h2>
             <div class="nuclearShield">
-                
-                <img id="radioactive" width="120" height="120" src="./assets/radioactive.png" alt="radioactive">
-                <p id="shieldNum">1</p> <!-- assign to be changed in js -->
-                
+
+                <img id="radioactive" width="130vw" height="130vh" src="./assets/radioactive.png" alt="radioactive">
+                <p id="shieldNum">0</p> <!-- assign to be changed in js -->
+
             </div>
-            <h2>Freeze Time</h2>
+            <h2 id="freezeHeader">Freeze Time</h2>
             <div class="spaceTimeGenerator">
-                <img id="blueCrystal" width="100" height="100" src="./assets/bluecrystal.png" alt="blue crystal">
-                <p>1</p>
+                <img id="blueCrystal" width="120vw" height="120vh" src="./assets/bluecrystal.png" alt="blue crystal">
+                <p id="timeNum">0</p> <!-- assign to be changed in js -->
             </div>
-            
+
+        </div>
+        <div class="activePowerUp">
+            <h3>ACTIVE POWER</h3>
+            <p id ="powerUp" >none</p>
+        </div>
+        <div class="helpScreen">
+        </div>
+        <div class="pause">
+            <h1>PAUSE</h1>
         </div>
         <div class="gameScreen">
-            <canvas id ="game">
+            <canvas id="game">
                 <img id="blueCrystal" width="220" height="277" src="./assets/bluecrystal.png" alt="blue crystal">
                 <img id="redCrystal" width="220" height="277" src="./assets/redcrystal.png" alt="red crystal">
                 <img id="radioactive" width="220" height="277" src="./assets/radioactive.png" alt="radioactive">
@@ -54,6 +87,11 @@
                 <img id="spaceship" width="220" height="277" src="assets/spaceship.png" alt="spaceship">
             </canvas>
 
+        </div>
+        <div class="startGame">
+            <button><img id="spaceshipStart" width="130vw" height="130vh" src="assets/spaceship.png" alt="spaceship-start-button">
+            </button>
+            <h2>START GAME</h2>
         </div>
 
     </div>
