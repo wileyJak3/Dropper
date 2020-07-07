@@ -1,102 +1,316 @@
+
+
+
+
+/* Hide astroid image loaded into canvas */
 #astroid img {
     display: hidden;
 }
-canvas {
-    border: 1px solid black;
-    /* height: 100vh; This works for setting canvas to entire page
-width: 100vw */
+/* #game{
+   
+} */
+
+
+/* remove scrolling and default margin */
+body {
+    background-color: black;
+    /* body hs a default margin of 8 pixels */
+    height: 97vh;
+    margin: 0vh;
+
+    overflow-y: hidden;
+    overflow-x: hidden;
+
 }
 
-body {
-    /* body hs a default margin of 8 pixels */
-    margin: 0;
-}
+/* The main container for all the other divs and disable the grid */
 .mainContainer {
     border: solid;
-    height: 97vh;
-    width: 98.5vw;
+    display: flex;
+    height: 98vh;
+    width: 99vw;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-gap: .5%;
+    grid-gap: .2%;
     padding: .5%;
     background-color: black;
+    flex-direction: row;
+    align-content: center;
 }
 
-.mainContainer>div {
-   
+/* .mainContainer>div {} */
 
-}
 
-.character {
+/*
+ * ─── SCORE ──────────────────────────────────────────────────────────────────────
+ */
+
+/* the div for the score in the top left corner  */
+.score {
     grid-column: 1/2;
     grid-row: 1/2;
-    background-color: blue;
+    /* background-color:olive; */
     border: white 2px solid;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 14vh;
+    font-size: 2.5vh;
+    font-weight: bold;
 }
+
+.score h3 {
+    padding: 0;
+    margin-bottom: -5vh;
+}
+
+#scoreNum {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 5vh;
+    margin-bottom: 2vh;
+}
+
+/*
+ * ─── GAMETIME ───────────────────────────────────────────────────────────────────
+ */
 
 .gameTitle {
     grid-column: 2/3;
     grid-row: 1/2;
-    background-color: red;
-    border: white 2px solid;
+    /* background-color: red;
+    border: white 2px solid; */
 }
 
-.empty {
+/*
+ * ─── HEALTH ─────────────────────────────────────────────────────────────────────
+ */
+
+.health {
     grid-column: 3/4;
     grid-row: 1/2;
-    background-color:green;
     border: white 2px solid;
+    color: white;
+    display: flex;
+    height: 14vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 2.5vh;
+    font-weight: bold;
 }
+
+.health h3 {
+    padding: 0;
+    margin-bottom: -5vh;
+}
+
+#healthNum {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 6vh;
+    margin-bottom: 2vh;
+}
+
+/*
+ * ─── LEVEL ──────────────────────────────────────────────────────────────────────
+ */
 
 .level {
     grid-column: 1/2;
     grid-row: 3/4;
-    background-color:olive;
+    /* background-color:olive; */
     border: white 2px solid;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 2.5vh;
+    font-weight: bold;
 }
 
-.score {
+.level h3 {
+    padding: 0;
+    margin-bottom: -10vh;
+}
+
+#levelNum {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 100px;
+    margin-bottom: 0vh;
+}
+
+
+/*
+ * ─── GAMEOVER ───────────────────────────────────────────────────────────────────
+ */
+
+    
+.hiddenScreen {
     grid-column: 2/3;
-    grid-row: 3/4;
-    background-color:teal;
-    border: white 2px solid;
+    grid-row: 1/4;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background-color:teal; */
+    /* border: white 2px solid; */
+    z-index: 100;
+
 }
 
+.hiddenScreen h1 {
+    font-size: 8vh;
+    margin-bottom: 0vh;
+}
+
+/* .yesNo {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    width: 10vw;
+
+} */
+
+
+.hiddenScreen button {
+    margin-top: -17vh; 
+    padding: 0;
+     border: none;
+     background: none;
+     margin-right: .4vw;
+    
+ }
+ 
+ .hiddenScreen h1 {
+     font-size: 8vh;
+     margin-bottom: 0vh;
+ 
+ }
+ .hiddenScreen h3 {
+     font-size: 4vh;
+     margin-top: -15vh;
+ 
+ }
+/*
+ * ─── LIVES ──────────────────────────────────────────────────────────────────────
+ */
+    
 .lives {
     grid-column: 3/4;
     grid-row: 3/4;
-    background-color:orchid;
-    border: white 2px solid;
+    /* border: white 2px solid; */
 }
+
+
+/* Warps and lives right inventory */
 .inventory {
     grid-column: 3/4;
     grid-row: 2/3;
-    
-    background-color:powderblue;
+
+    display: flex;
+    color: white;
+    /* background-color:lavenderblush; */
     border: white 2px solid;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
-    align-content: center;
 
 }
-.inventory>div {
-    border: red solid 2px;
-   
+
+.inventory h2 {
+    padding: 0%;
+    margin: 0%;
+
 
 }
+
+.inventory p {
+    font-size: 2.5vh;
+    font-weight: bold;
+    margin-top: .1vh;
+
+
+}
+
+/*
+ * ─── WARP IMAGE ─────────────────────────────────────────────────────────────────
+ */
+
+.warpSpeed {
+    /* border: lightcoral solid 2px; */
+    display: flex;
+    flex-direction: row;
+    color: greenyellow;
+    padding: 0%;
+
+}
+
+/*
+ * ─── Lives Image ─────────────────────────────────────────────────────────────────
+ */
+.lives {
+    /* border: red solid 2px; */
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+}
+
+
+/*
+ * ─── INVENTORY TEXT HEADERS ─────────────────────────────────────────────────────
+ */
+
+#spaceship {
+    padding: 4.2%;
+    /* margin-bottom: 5vh; */
+
+}
+
+#shipsHeader {
+    color: #285DCD
+}
+
+#livesNum {
+    color: #285DCD
+}
+
+#radioactive {}
+
+#warpSpeedHeader {
+    color: #db2929;
+    /* margin-top: 7vh; */
+}
+
+#warpNum {
+    color: #db2929;
+}
+
+
+/*
+ * ─── GAMESCREEN ─────────────────────────────────────────────────────────────────
+ */
 
 .gameScreen {
-    /* border: 1px solid black; */
+    border: 2px solid white;
     /* background: red; */
     /* height: 100vh; This works for setting canvas to entire page
 width: 100vw */
     grid-column: 2/3;
-    grid-row: 2/3;
+    grid-row: 1/4;
     display: flex;
-    width: 75vw;
-    height: 50vh;
+    width: 70vw;
+
 }
+
+/*
+ * ─── LEFT INVENTORY 2 NUCLEAR SHIELD AND FREEZE TIME ────────────────────────────
+ */
+
 .inventory_2 {
     grid-column: 1/2;
     grid-row: 2/3;
@@ -107,31 +321,160 @@ width: 100vw */
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    height: 60vh;
 }
 
-.inventory_2 p{
+.inventory_2 h2 {
+    padding: 0%;
+    margin: 0%;
+
+}
+
+.inventory_2 p {
     font-size: 2.5vh;
     font-weight: bold;
-    margin-top: .1vh;
-    
+
+
 }
 
-.nuclearShield{
+
+/*
+ * ─── NUCLEAR SHILED TAB ─────────────────────────────────────────────────────────
+ */
+    
+.nuclearShield {
     /* border: lightcoral solid 2px; */
     display: flex;
     flex-direction: row;
-    color:greenyellow;
+    color: greenyellow;
+    /* padding: 2%; */
 
 }
-.spaceTimeGenerator{
+
+/*
+ * ─── SPACE TIME TAB ─────────────────────────────────────────────────────────────
+ */
+
+.spaceTimeGenerator {
     /* border: red solid 2px; */
     display: flex;
     flex-direction: row;
     align-content: space-between;
-    color: blue;
+    color: #4B98BA;
 }
 
-#blueCrystal{
-    padding 9%;
+/*
+ * ─── INVENTORY 2  TEXT HEADER ───────────────────────────────────────────────────
+ */
+
+#blueCrystal {
+    padding: 4.2%;
+    /* margin-bottom: 5vh; */
+
+}
+
+#radioactive {}
+
+#nukShieldHeader {
+    color: chartreuse;
+    /* margin-top: 5vh; */
+}
+
+#freezeHeader {
+    color: #4B98BA;
+}
+
+#freezeHeader {
+    color: #4B98BA;
+}
+
+
+
+
+/* .help button {
+    width: 99%;
+    ;
+    height: 99%;
+} */
+
+/*
+ * ─── START SCREEN CSS ───────────────────────────────────────────────────────────
+ */
+
+.startGame {
+    grid-row: 1/4;
+    grid-column: 2/3;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    color: white;
+
+
+}
+
+.startGame button {
+    padding: 0;
+    border: none;
+    background: none;
+    margin-right: .4vw;
+}
+
+/*
+ * ─── PAUSE SCREEN CSS ───────────────────────────────────────────────────────────
+ */
+
+.pause {
+    grid-column: 2/3;
+    grid-row: 1/4;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background-color:teal; */
+    /* border: white 2px solid; */
+    z-index: 101;
+
+}
+
+
+#spaceshipRestart{
     
 }
+
+
+
+/*
+ * ─── POWERUP ACTIVATED TAB ──────────────────────────────────────────────────────
+ */
+
+    
+.activePowerUp {
+    grid-column: 3/4;
+    grid-row: 3/4;
+    border: white 2px solid;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 2.3vh;
+    font-weight: bold;
+
+}
+.activePowerUp h3{
+    margin-bottom: -2vh;
+
+}
+#powerUp{
+    font-size: 4vh;
+}
+
+#powerUpText{
+    margin-top: 0;
+    font-size: 5vh;
+}
+
