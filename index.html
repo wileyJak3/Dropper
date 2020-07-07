@@ -12,39 +12,50 @@
 
 <body>
 
-    <!-- <h1> Hello World</h1> -->
+    <!-- Main container is what initializes the grid -->
     <div class="mainContainer">
+
+        <!-- score displays the players current score -->
         <div class="score">
             <h3>SCORE</h3>
             <p id="scoreNum">0</p>
         </div>
         <div class="gameTitle">gameTitle</div>
+        
+        <!-- Health displays the players current current -->
         <div class="health">
             <h3>HEALTH</h3>
             <p id="healthNum">100</p>
         </div>
+
+        <!-- Level displays the current level -->
         <div class="level">
             <h3>LEVEL</h3>
             <p id="levelNum">0</p>
-
-
         </div>
+
+
+        <!-- Div for the hidden game over screen in the background -->
         <div class="hiddenScreen">
-            <h1>GAMEOVER</h1>
+            <h1>GAME OVER</h1>
             <button><img id="spaceshipRestart" width="130vw" height="130vh" src="./assets/spaceship.png" alt="spaceship"> </button>
             <h3>PLAY AGAIN</h3>
-
         </div>
-        <!-- <div class="lives">lives</div> -->
+
+        <!-- Display the inventory to the right of the screen  -->
         <div class="inventory">
             <!-- inventory -->
             <h2 id="warpSpeedHeader">Warp Speed</h2>
+
+            <!--  Warp counter  right of the screen  -->
             <div class="warpSpeed">
                 <p id="warpNum">0</p> <!-- assign to be changed in js -->
                 <img id="redCrystal" width="130vw" height="130vh" src="./assets/redcrystal.png" alt="red crystal">
 
             </div>
             <h2 id="shipsHeader">Ships</h2>
+
+            <!-- lives counter to the right of the screen -->
             <div class="lives">
 
                 <p id="livesNum">0</p> <!-- assign to be changed in js -->
@@ -53,15 +64,21 @@
             </div>
 
         </div>
+
+        <!-- Display the inventory to the left of the screen  -->
         <div class="inventory_2">
             <!-- inventory -->
             <h2 id="nukShieldHeader">Nuclear Shield</h2>
+
+            <!-- nuclear shield counter to the right of the screen -->
             <div class="nuclearShield">
 
                 <img id="radioactive" width="130vw" height="130vh" src="./assets/radioactive.png" alt="radioactive">
                 <p id="shieldNum">0</p> <!-- assign to be changed in js -->
 
             </div>
+
+            <!-- time Freeze counter to the right of the screen -->
             <h2 id="freezeHeader">Freeze Time</h2>
             <div class="spaceTimeGenerator">
                 <img id="blueCrystal" width="120vw" height="120vh" src="./assets/bluecrystal.png" alt="blue crystal">
@@ -69,15 +86,21 @@
             </div>
 
         </div>
+
+        <!-- Current status of power up effect to the right of the screen -->
         <div class="activePowerUp">
             <h3>ACTIVE POWER</h3>
             <p id ="powerUp" >none</p>
         </div>
+
+        <!-- help screen not implemented -->
         <div class="helpScreen">
         </div>
         <div class="pause">
-            <h1>PAUSE</h1>
+            <h1>PAUSED</h1>
         </div>
+
+        <!-- game screen backdrop and the game canvas -->
         <div class="gameScreen">
             <canvas id="game">
                 <img id="blueCrystal" width="220" height="277" src="./assets/bluecrystal.png" alt="blue crystal">
@@ -86,8 +109,9 @@
                 <img id="astroid" width="220" height="277" src="./assets/astroid_1.png" alt="astroid">
                 <img id="spaceship" width="220" height="277" src="./assets/spaceship.png" alt="spaceship">
             </canvas>
-
         </div>
+
+        <!-- start screen for the game canvas -->
         <div class="startGame">
             <button><img id="spaceshipStart" width="130vw" height="130vh" src="assets/spaceship.png" alt="spaceship-start-button">
             </button>
